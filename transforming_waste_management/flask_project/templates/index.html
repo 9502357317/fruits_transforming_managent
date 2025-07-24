@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Fruit Classifier{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8">
+        <div class="hero-section text-center mb-5">
+            <h1 class="display-4 mb-3">Fruit Quality Classifier</h1>
+            <p class="lead">Upload an image of a fruit to check if it's fresh or rotten using AI</p>
+        </div>
+
+        <div class="upload-section">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h3 class="card-title mb-0">Upload Fruit Image</h3>
+                </div>
+                <div class="card-body">
+                    <form id="uploadForm" action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="file" class="form-label">Choose an image file:</label>
+                            <input type="file" class="form-control" id="file" name="file" accept="image/*" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg">Analyze Image</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="result" class="mt-4" style="display: none;">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h3 class="card-title mb-0">Prediction Result</h3>
+                </div>
+                <div class="card-body">
+                    <div id="resultContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card shadow">
+            <div class="card-header">
+                <h5 class="card-title mb-0">How it works</h5>
+            </div>
+            <div class="card-body">
+                <ol>
+                    <li>Upload an image of a fruit</li>
+                    <li>Our AI model analyzes the image</li>
+                    <li>Get instant results about fruit quality</li>
+                    <li>See confidence score for the prediction</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="card shadow mt-3">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Supported Formats</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li>✓ JPG/JPEG</li>
+                    <li>✓ PNG</li>
+                    <li>✓ GIF</li>
+                    <li>✓ Max size: 16MB</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="feature-card text-center">
+            <div class="feature-icon">🔬</div>
+            <h4>AI-Powered</h4>
+            <p>Advanced machine learning algorithms for accurate fruit quality detection</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="feature-card text-center">
+            <div class="feature-icon">⚡</div>
+            <h4>Fast Results</h4>
+            <p>Get instant predictions in seconds</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="feature-card text-center">
+            <div class="feature-icon">📱</div>
+            <h4>Easy to Use</h4>
+            <p>Simple upload interface for quick analysis</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
